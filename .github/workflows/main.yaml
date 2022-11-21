@@ -31,9 +31,15 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       # Build and push image to azure container registry
-      - name: ACR Login
-        run: |
-          az acr login --name ${{ secrets.ACR_NAME }}
+      - name: Azure CLI script file
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az acr login --name ${{ secrets.ACR_NAME }}
+      # - name: ACR Login
+      #   run: |
+      #     az acr login --name ${{ secrets.ACR_NAME }}
       - name: Build and push image
         working-directory: ${{ matrix.flow-folder }}
         run: |
