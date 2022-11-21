@@ -25,7 +25,6 @@ jobs:
       max-parallel: 10
     steps:
       - uses: actions/checkout@v2
-      - uses: azure/install-azure-cli@v1
       # Log in to azure cli using service principal
       - uses: azure/login@v1
         with:
